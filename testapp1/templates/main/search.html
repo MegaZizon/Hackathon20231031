@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <link href="{% static 'css/search.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+    <script src="//code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+    <div id="mom">
+        <div class="popup-content2" id="popup-content2">
+            <div class="popup-center2">
+                
+            <div class="popup-form2" id="popup-form2">
+                    <div class="close2" id="close-popup2">
+                        <div class="close-btn2">&times;</div>
+                    </div>
+                    <h2 class="login-logo2">Recipick!<br></h2>
+                    <form>
+                        
+                        
+                        <div class="form-group2">
+                            <input class="form-group-input2" type="text"placeholder="아이디" required>
+                            
+                        </div>
+                        <div class="form-group2">
+                            
+                            <input class="form-group-input2" type="password" placeholder="비밀번호" required>
+                        </div>
+                        <button id="sign-submit2" type="submit">로그인하기</button>
+                    </form>
+            </div>
+            </div>
+        </div>
+        
+        <div class="top">
+            <div class="left"></div>
+            <div class="top-center-mid">
+                <div class="top-center">
+                    <div class="logo" id="logo_click">
+                        <i>Hallym.Univ</i>
+                    </div>
+                </div>
+                <div class="search-menu">
+                    <div class="category-box">
+                        <div class="selectBox2 ">
+                            <button class="label" id="cate-option">글 제목</button>
+                            <ul class="optionList">
+                            <li class="optionItem">글 제목</li>
+                            <li class="optionItem">시세 검색</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="search-box">
+                        
+                        <input type="text" id='search_text_content' class="search-txt" name="" placeholder="Search">
+                            <a class="search-btn" >
+                                <i class="fas fa-search" onclick="search()"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="user-associate">
+                    
+                    
+                    <div class="top-center-2">
+                        <div class="user-icon2">
+                            <ul>
+                                <li><a id="sign-btn" class="sign-btn" href="#">
+                                    <i class="fa-solid fa-user"></i>
+                                </a>
+                                    
+                                </a>
+                                
+                                    <ul>
+                                        <li><div class="signin" onclick="login_popup()">
+                                            로그인
+                                            </div></li>
+                                        <li>
+                                            <div class="signup" onclick="signup()">
+                                            회원가입
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                                {% if request.session.user_id %}
+                                <li>
+                                    <a id="sign-btn" class="sign-btn" href="/logout">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="sign-btn" class="sign-btn" href="/write">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                </li>
+                                
+                                {% endif %}
+                                
+                            </ul>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="right"></div>
+        </div>
+        <div class="content">
+            <div class="left"></div>
+            <div class="center">
+                <div class="center-bottom-title">
+                    <p>"{{ search_str }}" 검색결과</p>
+                </div>
+                <div class="product-list">
+                    {% for post in search_post %}
+                    <li class="product" onclick="location.href='/post/{{ post.id }}'">
+                        <div class="product-image-box">
+                            <img class="product-image" src="{{ post.post_img.url }}" alt="이미지 설명">
+                        </div>
+                        <div class="product-caption">
+                            {{ post.title }} / {{ post.price }} 원
+                        </div>
+                        <div class="product-caption-details">
+                            {{ post.user_nickname }} / 조회수 {{ post.visited }} / 추천수 {{post.vote }}
+                        </div>
+                    </li>
+                    {% endfor %}
+                    
+                    
+                </div>
+                <!-- <div class="paging">
+                    <div class="pagination-container">
+                        <div class="pagination-box">
+                            <ul class="bottom">
+                                <li>1</li>
+                                <li>2</li>
+                                <li>3</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+                
+            <div class="right"></div>
+        </div>
+    </div>
+</body>
+<script>
+    /* 화살표 함수 */
+    const label = document.querySelector('.label');
+    const options = document.querySelectorAll('.optionItem');
+
+    // 클릭한 옵션의 텍스트를 라벨 안에 넣음
+    const handleSelect = (item) => {
+    label.parentNode.classList.remove('active');
+    label.innerHTML = item.textContent;
+    }
+    // 옵션 클릭시 클릭한 옵션을 넘김
+    options.forEach(option => {
+        option.addEventListener('click', () => handleSelect(option))
+    })
+
+    // 라벨을 클릭시 옵션 목록이 열림/닫힘
+    label.addEventListener('click', () => {
+    if(label.parentNode.classList.contains('active')) {
+        label.parentNode.classList.remove('active');
+    } else {
+        label.parentNode.classList.add('active');
+    }
+    })
+    $('#sign-btn').mouseover(function(){
+        
+        $('.user-container').addClass('active');
+        $('.triangle').css({
+            display: 'block'
+        });
+        
+    });
+    $('.user-associate').mouseleave(function(){
+        
+        $('.user-container').removeClass('active');
+        $('.triangle').css({
+            display: 'none'
+        });
+    });
+
+    function login_popup(event){
+        document.getElementById("popup-content2").style.display = "block";
+        document.getElementById("popup-content2").style.background="rgba(0, 0, 0, 0.279)";
+
+    };
+
+    // 닫기 버튼 또는 모달 외부 클릭 시 팝업 숨기기
+    document.getElementById("close-popup2").addEventListener("click", function() {
+        document.getElementById("popup-content2").style.display = "none";
+        document.getElementById("mom").style.background="rgba(255, 255, 255)";
+    });
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("login-popup2")) {
+            document.getElementById("login-popup2").style.display = "none";
+        }
+    }
+
+    document.getElementById("logo_click").addEventListener("click",function(){
+        
+        location.href="/"
+    })
+
+    function signup() {
+        location.href="/signup";
+    }
+    function logout() {
+        location.href="/logout";
+    }
+    function myinfo() {
+        location.href="/signup";
+    }
+
+    function signin() {
+        var newForm = document.createElement('form');
+	// set attribute (form) 
+        newForm.name = 'newForm';
+        newForm.method = 'post';
+        newForm.action = '/';
+        newForm.target = '_blank';
+
+        // create element (input)
+        var input1 = document.createElement('input');
+        var input2 = document.createElement('input');
+        
+        // set attribute (input)
+        input1.setAttribute("type", "hidden");
+        input1.setAttribute("name", "loginId");
+        input1.setAttribute("value", document.getElementById("loginid").value);
+        input2.setAttribute("type", "hidden");
+        input2.setAttribute("name", "loginPW");
+        input2.setAttribute("value", document.getElementById("loginpw").value);
+        newForm.appendChild(input1);
+	    newForm.appendChild(input2);
+	    document.body.appendChild(newForm);
+	    newForm.submit();
+    }
+    var content = "{{ error }}";
+    if(content){
+        alert(content)
+    }
+
+    function search(){
+        var search_str=document.getElementById('search_text_content').value;
+        var cate_option = document.getElementById('cate-option').innerText;
+        console.log(cate_option)
+        if(cate_option=='글 제목'){
+            
+            location.href="/search/"+search_str;
+        }else{
+            location.href="/cost/"+search_str;
+        }
+    }
+</script>
+</html>

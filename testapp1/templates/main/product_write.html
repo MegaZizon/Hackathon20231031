@@ -1,0 +1,443 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <link href="{% static 'css/product_write.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+    <script src="//code.jquery.com/jquery-3.6.1.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <style>
+        body{
+            margin:0;
+    background-color: rgba(250, 235, 215, 0.197);
+        }
+        
+    </style>
+    
+</head>
+<body >
+    <div id="mom">
+        <div class="popup-content2" id="popup-content2">
+            <div class="popup-center2">
+                
+            <div class="popup-form2" id="popup-form2">
+                    <div class="close2" id="close-popup2">
+                        <div class="close-btn2">&times;</div>
+                    </div>
+                    <h2 class="login-logo2" style="font-family: 'IBM Plex Sans KR', sans-serif; font-size: 40pt; text-align: center;">Hallym<br>University</h2>
+                    <form>
+                        
+                        
+                        <div class="form-group2">
+                            <input class="form-group-input2" type="text"placeholder="아이디" required>
+                            
+                        </div>
+                        <div class="form-group2">
+                            
+                            <input class="form-group-input2" type="password" placeholder="비밀번호" required>
+                        </div>
+                        <button id="sign-submit2" type="submit">로그인하기</button>
+                    </form>
+            </div>
+            </div>
+        </div>
+        <div class="top">
+            <div class="left"></div>
+            <div class="top-center-mid">
+                <div class="top-center">
+                    <div class="logo" id="logo_click">
+                        <i>Hallym.Univ</i>
+                    </div>
+                </div>
+                <div class="search-menu">
+                    <div class="category-box">
+                        <div class="selectBox2 ">
+                            <button class="label">상품명</button>
+                            <ul class="optionList">
+                            <li class="optionItem">상품명</li>
+                            <li class="optionItem">시세</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="search-box">
+                        
+                        <input type="text" class="search-txt" name=""placeholder="Search">
+                        <a class="search-btn" href="#">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="user-associate">
+                    
+                    
+                    <div class="top-center-2">
+                        <div class="user-icon">
+                            <ul>
+                                <li><a id="sign-btn" class="sign-btn" href="#">
+                                    <i class="fa-solid fa-user"></i>
+                                </a>
+                                    
+                                </a>
+                                
+                                    <ul>
+                                        <li><div class="signin" onclick="logout()">
+                                            로그아웃
+                                            </div></li>
+                                        <li>
+                                            <div class="signup" onclick="mypage()">
+                                            내정보
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                                {% if request.session.user_id %}
+                                <li>
+                                    <a id="sign-btn" class="sign-btn" href="/logout">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="sign-btn" class="sign-btn" href="/write">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                </li>
+                                
+                                {% endif %}
+                                
+                            </ul>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="right"></div>
+        </div>
+        <div class="content" >
+            <div class="left"></div>
+            <div class="center" >
+                <div class="write-form-box">
+                    <div class="container"  role="main">
+                        <div class="write-title">
+                            판매글 작성
+                        </div>
+                        <form  name="form" id="form" class="form_" role="form" method="post" action="/write/submit" enctype="multipart/form-data" >
+                            <div class="mb-3">
+                                <label for="title">제목</label>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
+                            </div>
+                            <div class="mb-3">
+                                <label for="price">가격</label>
+                                <input type="text" class="form-control" name="price" id="price" placeholder="가격을 입력해 주세요">
+                            </div>
+                            <div class="mb-3">
+                                <label for="model_name">모델명</label>
+                                <input type="text" class="form-control" name="model_name" id="model_name" placeholder="모델명 입력해 주세요">
+                            </div>
+                            <div class="mb-3">
+                                <label for="content">상품 설명</label>
+                                <textarea class="form-control" rows="11" name="content" id="content" placeholder="상품을 설명해 주세요" ></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="picture-label" for="tag">사진 업로드 +</label>
+                                <div id="picture_box">
+                                    <input id ="picture-upload" class="picture-upload" value="첨부파일" placeholder="첨부파일">
+                                    
+                                </div>
+                                <input id="tag" name="file" type="file" style="color:black;">
+                                
+                            </div>
+                        </form>
+                        <div style="display: flex; justify-content: center; padding-bottom: 30px;">
+                            <button style="" type="button" class="btn btn-sm btn-primary" id="btnSave" onclick="write_submit()">등록하기</button>
+                            <button style="" type="button" class="btn btn-sm btn-primary" id="btnList" onclick="home()">목록으로</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="write-form-box2">
+                    <div class="container" id="">
+                        <div class="write-title2">
+                            시세 <br>확인하기
+                        </div>
+                        <div class="mb-3" style="justify-content: center; align-items: center;">
+                            <input style="font-size: small;" type="text" class="form-control" name="model_name" id="model_name_check" placeholder="모델명을 입력해 주세요">
+                        </div>
+                        <div class="mb-3" id="check_price">
+                            CHECK!
+                        </div>
+                        <div style="display: none;" class="mb-3" id="right-container">
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+var teststr;
+class FileUpload {
+
+    constructor(input) {
+        this.input = input
+        this.max_length = 1024 * 10 * 3;
+    }
+
+
+    upload() {
+        this.initFileUpload();
+    }
+
+    initFileUpload() {
+        this.file = this.input.files[0];
+        this.upload_file(0, null);
+    }
+
+    //upload file
+    upload_file(start, model_id) {
+        var end;
+        var self = this;
+        var existingPath = model_id;
+        var formData = new FormData();
+        var nextChunk = start + this.max_length + 1;
+        var currentChunk = this.file.slice(start, nextChunk);
+        var uploadedChunk = start + currentChunk.size
+        if (uploadedChunk >= this.file.size) {
+            end = 1;
+        } else {
+            end = 0;
+        }
+        formData.append('file', currentChunk)
+        formData.append('filename', this.file.name)
+        formData.append('end', end)
+        formData.append('existingPath', existingPath);
+        formData.append('nextSlice', nextChunk);
+        
+        $.ajax({
+            
+            url: '',
+            type: 'POST',
+            dataType: 'json',
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: formData,
+            error: function (xhr) {
+                alert(xhr.statusText);
+            },
+            success: function (res) {
+                if (nextChunk < self.file.size) {
+                    existingPath = res.existingPath
+                    self.upload_file(nextChunk, existingPath);
+                } else {
+                    
+                    var image = (path) =>{
+                        var href_link2=window.location.href;
+                        var href_link = href_link2+"img/"+path;
+                        var category = res.category;
+                        console.log(href_link)
+                        console.log(category)
+                        var img = `
+                        <div>
+                            <img width="630" height="470" src="${href_link}">
+                            </img>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price">카테고리</label>
+                            <input type="text" class="form-control" name="category" id="category" placeholder="카테고리를 입력해 주세요" value="${category}">
+                        </div>
+                        
+                        `
+                        document.getElementById('picture_box').innerHTML = img
+                        teststr=path;
+                    }
+                    if ((res.existingPath).substr(-4)==".jpg"){
+                        image(res.existingPath);
+                    }
+                    console.log((res.existingPath).substr(-2));
+                    
+                }
+            }
+        });
+    };
+}
+
+
+
+        /* 화살표 함수 */
+        const label = document.querySelector('.label');
+    const options = document.querySelectorAll('.optionItem');
+
+    // 클릭한 옵션의 텍스트를 라벨 안에 넣음
+    const handleSelect = (item) => {
+    label.parentNode.classList.remove('active');
+    label.innerHTML = item.textContent;
+    }
+    // 옵션 클릭시 클릭한 옵션을 넘김
+    options.forEach(option => {
+        option.addEventListener('click', () => handleSelect(option))
+    })
+
+    // 라벨을 클릭시 옵션 목록이 열림/닫힘
+    label.addEventListener('click', () => {
+    if(label.parentNode.classList.contains('active')) {
+        label.parentNode.classList.remove('active');
+    } else {
+        label.parentNode.classList.add('active');
+    }
+    })
+    $('#sign-btn').mouseover(function(){
+        
+        $('.user-container').addClass('active');
+        $('.triangle').css({
+            display: 'block'
+        });
+        
+    });
+    $('.user-associate').mouseleave(function(){
+        
+        $('.user-container').removeClass('active');
+        $('.triangle').css({
+            display: 'none'
+        });
+    });
+    function login_popup(event){
+        document.getElementById("popup-content2").style.display = "block";
+        document.getElementById("popup-content2").style.background="rgba(0, 0, 0, 0.279)";
+
+    };
+
+    // 닫기 버튼 또는 모달 외부 클릭 시 팝업 숨기기
+    document.getElementById("close-popup2").addEventListener("click", function() {
+        document.getElementById("popup-content2").style.display = "none";
+        document.getElementById("mom").style.background="rgba(255, 255, 255)";
+    });
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("login-popup2")) {
+            document.getElementById("login-popup2").style.display = "none";
+        }
+    }
+    $("#tag").on('change',function(){
+        var fileName = $("#tag").val();
+        $("#picture-upload").css("display", "block");
+        $("#picture-upload").val(fileName);
+        console.log(fileName)
+
+        var uploader = new FileUpload(document.querySelector('#tag'))
+        console.log(document.querySelector('#tag'));
+        uploader.upload();
+        
+    });
+
+    function signup() {
+        location.href="/signup";
+    }
+    function logout() {
+        location.href="/logout";
+    }
+    function mypage() {
+        location.href="/mypage";
+    }
+    function home(){
+        location.href="/";
+
+    }
+    function write_submit(){
+        document.getElementById('form').submit();
+
+    }
+    function signin() {
+        var newForm = document.createElement('form');
+	// set attribute (form) 
+        newForm.name = 'newForm';
+        newForm.method = 'post';
+        newForm.action = '/';
+        newForm.target = '_blank';
+
+        // create element (input)
+        var input1 = document.createElement('input');
+        var input2 = document.createElement('input');
+        
+        // set attribute (input)
+        input1.setAttribute("type", "hidden");
+        input1.setAttribute("name", "loginId");
+        input1.setAttribute("value", document.getElementById("loginid").value);
+        input2.setAttribute("type", "hidden");
+        input2.setAttribute("name", "loginPW");
+        input2.setAttribute("value", document.getElementById("loginpw").value);
+        newForm.appendChild(input1);
+	    newForm.appendChild(input2);
+	    document.body.appendChild(newForm);
+	    newForm.submit();
+    }
+
+document.getElementById("check_price").addEventListener("click", function() {
+    $('#load').css('display', 'block');
+    
+    var href_link2=window.location.href;
+    var href_link = href_link2+"checkPrice/"+document.getElementById("model_name_check").value;;
+    console.log(href_link)
+    $.ajax({
+        
+        url:href_link,                  
+        success:function(res){
+            
+            $('#load').css('display', 'none');
+            didcheck(res.avgJoongo,res.avgHallym,res.leastHallym,res.fail);
+            
+        }
+    });  
+});
+
+function didcheck(avgJoongo,avgHallym,leastHallym,fail){
+    if (fail==null){
+        var text_content = `
+        <div class="mb-3" style="font-weight:600;">
+            중고나라 평균가<br>${avgJoongo} <span style="font-size:8pt;">원<p>
+        </div>
+        <div class="mb-3" style="font-weight:600;">
+            예상 평균가<br>${avgHallym} <span style="font-size:8pt;">원<p>
+        </div>
+        <div class="mb-3" style="font-weight:600;">
+            예상 최저가<br>${leastHallym} <span style="font-size:8pt;">원<p>
+        </div>
+        
+        `
+        $('#right-container').css('display', 'block');
+        document.getElementById('right-container').innerHTML = text_content
+    }else{
+        var text_content = `
+        <div class="mb-3" style="font-weight:600;">
+            데이터를 불러오는데 실패했습니다.
+        </div>
+        
+        `
+        document.getElementById('right-container').innerHTML = text_content
+        $('#right-container').css('display', 'block');
+    }
+    
+}
+document.getElementById("logo_click").addEventListener("click",function(){
+        
+    location.href="/"
+})
+</script>
+</html>

@@ -1,0 +1,17 @@
+asgiref==3.7.2
+beautifulsoup4==4.12.2
+certifi==2023.7.22
+charset-normalizer==3.3.1
+Django==4.2.6
+gunicorn==21.2.0
+idna==3.4
+numpy==1.26.1
+opencv-python==4.8.1.78
+packaging==23.2
+Pillow==10.1.0
+psycopg2==2.9.9
+requests==2.31.0
+soupsieve==2.5
+sqlparse==0.4.4
+tzdata==2023.3
+urllib3==2.0.7
