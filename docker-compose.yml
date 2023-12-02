@@ -6,10 +6,19 @@ services:
     volumes:
       - static_volume:/usr/src/app/staticfiles
       - media_volume:/usr/src/app/_media
+      - ./data/certbot/conf:/etc/letsencrypt 
+      - ./data/certbot/www:/var/www/certbot
     ports:
       - 80:80
     depends_on:
       - web
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt 
+      - ./data/certbot/www:/var/www/certbot
+      
   web:
     build: .
     command: gunicorn test_db.wsgi:application --bind 0.0.0.0:8000
