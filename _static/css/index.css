@@ -1,0 +1,610 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@100;200;300;400;500;600&family=IBM+Plex+Sans+KR:wght@00&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    
+    height: 100vh;
+    width: 100vw;
+    background-size: cover; 
+    background-color: rgba(250, 235, 215, 0.197);
+
+  }
+  .top{
+    display: flex;
+    flex-direction: row;
+    height: 430px;
+    background-color: #2671c2;
+  }
+  .top-center-mid{
+    flex-basis: 1050px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .user-icon{
+    font:bold 16px "malgun gothic";
+    color:white;
+		line-height: 50px; 
+		margin:0 auto;
+		text-align: center;
+    list-style: none;
+  }
+  .user-icon > ul > li {
+		float:right;
+    list-style: none;
+    text-align: center;
+	}
+  
+  .user-icon > ul > li > ul {
+		display:none;
+		font-size:14px;
+    background: rgb(34, 40, 44);
+    list-style:none;
+    position: absolute;
+    right:20px;
+    border-radius: 5px;
+	}
+  .user-icon > ul > li > ul >li {
+    position: relative;
+    left: -20px;
+	}
+  .user-icon > ul > li:hover > ul {
+		display:block;
+    list-style:none;
+	}
+
+  #cate-menu{
+    position: absolute;
+    font:bold 16px "malgun gothic";
+		color:black;
+		line-height: 50px; 
+		margin:0 auto;
+		text-align: center;
+    list-style: none;
+    top:20px;
+    left:-50px;
+  }
+
+  #cate-menu > ul > li {
+		float:left;
+		position:relative;
+    list-style: none;
+    text-align: center;
+	}
+  #category-txt{
+    position: absolute;
+    top: 45px;
+    left : 50px;
+    color:white;
+  }
+  #cate-menu > ul > li > ul {
+		display:none;
+		position: absolute;
+		font-size:14px;
+    background: rgb(34, 40, 44);
+    list-style:none;
+    border-radius: 5px;
+    color:white;
+	}
+  #cate-menu > ul > li > ul >li {
+    position: relative;
+    left: -20px;
+	}
+  #cate-menu > ul > li:hover > ul {
+		display:block;
+    list-style:none;
+	}
+  .top-center{
+    height: 110px;
+    width : 1050px;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-shrink: 0;
+    align-items: center;
+  }
+  .top-center-2{
+    flex-shrink: 0;
+  }
+  .top-center-mid-2{
+    flex-basis: 1050px;
+    flex-shrink: 1;
+  }
+  .top-center-left{
+  }
+  
+  .content{
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+    flex-grow: 1;
+    background-color: rgba(250, 235, 215, 0.197);
+  }
+  .left{
+    flex-basis: 426px;
+    flex-shrink: 1;
+    overflow: hidden;
+  }
+  .center{
+    flex-basis: 1050px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .right{
+    flex-basis: 426px;
+    flex-shrink: 1;
+    overflow: hidden;
+  }
+  .search-menu-box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .search-menu-space{
+    display: flex;
+    flex-basis: 175px;
+    
+  }
+  .search-menu{
+    display: flex;
+    flex-basis: 700px;
+    flex-direction: row;
+    background-color: #fff;
+    margin-bottom: 100px;
+    height: 50px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px 1px #1f2827;
+  }
+  .search-menu:hover{
+    
+    box-shadow: 0px 0px 10px 1px #1f2827;
+  }
+  .category-box{
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .search-box{
+    display: flex;
+    height: 50px;
+    background-color: #fff;
+    border-left: 1px solid #fafafa;
+    border-radius: 30px;
+    width: 500px;
+    margin-bottom: 100px;
+    
+  }
+  .search-btn{
+
+    float: right;
+    flex-basis: 70px;
+    border-radius: 90%;
+    color: #141313;
+    margin-top: 5px;
+    margin-left: 20px;
+  }
+  .category-txt{
+    border:none;
+    background: none;
+    outline: none;
+    font-size: 1rem;
+
+  }
+  .search-txt{
+    flex-basis: 430px;
+    padding-left: 20px;
+    border: none;
+    border-left:2px solid rgb(8, 8, 8) ;
+
+    background: none;
+    outline: none;
+    font-size: 2rem;
+    font-size: 20px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+  *{
+    box-sizing: border-box;
+  }
+  .search-btn i {
+    font-size: 2.5rem; /* 원하는 크기로 조절, 예: 2rem */
+}
+.sign-btn i {
+    font-size: 2.5rem; /* 원하는 크기로 조절, 예: 2rem */
+    color:rgb(255, 255, 255);
+}
+.cate-btn i {
+  font-size: 2.5rem; /* 원하는 크기로 조절, 예: 2rem */
+  color:rgb(255, 255, 255);
+}
+.sign-btn {
+  position: relative;
+    margin-right: 20px;
+    box-sizing: border-box;
+}
+.logo{
+    font-family: 'Caveat', cursive;
+    font-size: 70px;
+    padding-bottom: 50px;
+    font-weight: 300;
+    color:white;
+}
+.center-bottom{
+    width: 1050px;
+    display: flex;
+    flex-direction: column;
+}
+.all-view{
+    width: 80px;
+    text-align: right;
+    margin-top: 30px;
+    color:#9a9999;
+    font-weight: 500;
+    font-size: 10pt;
+    font-family: 'Noto Sans KR', sans-serif;
+    
+}
+.all-view:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.center-bottom-top-box{
+  margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+}
+
+.center-bottom-title{
+    color: rgb(57, 57, 57);
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 20pt;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.product-list{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    overflow: hidden;
+    list-style-type: none;
+}
+.product{
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+    width: 180px;
+    height: 302px;
+    
+}
+.product-image-box{
+    display: block;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    overflow: hidden;
+    position: relative; /* 추가한 스타일 */
+}
+
+
+.product-image{
+    display: block;
+    width: 180px;
+    height: 180px;
+}
+
+.product-image:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: all 0.5s linear;
+}
+
+
+
+.product-caption{
+    cursor: pointer;
+}
+
+
+.product-caption {
+    width: 180px;
+    height: 40px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 10pt;
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow: hidden;
+    /* vertical-align: middle; 제거 */
+    color: #313d4b;
+    
+    /* 추가한 스타일 */
+    display: flex;
+    align-items: center;
+}
+.product-caption-details {
+  width: 201px;
+  height: 40px;
+  border-bottom: 1px solid rgba(159, 159, 159, 0.554);
+  font-weight: 500;
+  font-size: 10pt;
+  font-family: 'Noto Sans KR', sans-serif;
+  overflow: hidden;
+  /* vertical-align: middle; 제거 */
+  color: #8b95a2;
+  /* 추가한 스타일 */
+  display: flex;
+  align-items: center;
+}
+
+.selectBox2 {
+  left: 0px;
+  width: 200px;
+  position: relative;
+  text-align: center;
+  height: 50px;
+  border-radius: 30px;
+  background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 7px) center no-repeat;
+  background-size: 20px;
+  cursor: pointer;
+  
+  background-color: rgb(255, 255, 255);
+}
+
+.selectBox2:after {
+  display: block; 
+  width: 2px;
+  height: 100%; 
+  position: absolute; 
+  top: 0; 
+  right: 35px;
+  background: rgb(255, 255, 255);
+}
+
+.selectBox2 .label {
+    text-align: center;
+  align-items: center;
+  width: 200px;
+  height: inherit;
+  border: 0 none;
+  outline: 0 none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  color: #1b1a1a;
+  translate: 0.2;
+}
+
+.selectBox2 .optionList {
+    top:40px;
+    text-align: center;
+  position: absolute; 
+  left:25px;
+  width: 150px;
+  background: rgb(255, 255, 255);
+  list-style-type: none;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 0;
+  font-size: 20px;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+color: #131313;
+}
+
+.selectBox2.active .optionList {
+  max-height: 500px;
+  height: 80px;
+  font-size: 20px;
+  border: 1px solid rgba(14, 14, 14, 0.649);
+}
+
+.selectBox2 .optionItem {
+  border-bottom: 1px solid rgb(29, 29, 29);
+  padding: 5px 15px 5px;
+  height: 40px;
+  border:1px solid rgb(223, 220, 220);
+  transition: .1s;
+}
+
+.selectBox2 .optionItem:hover {
+  color: rgb(32, 32, 32);
+  background-color: rgba(250, 235, 215, 0.263);
+}
+
+.selectBox2 .optionItem:last-child {
+  border-bottom: 0 none;
+}
+
+
+.selectBox2 .optionList::-webkit-scrollbar {width: 6px;}
+.selectBox2 .optionList::-webkit-scrollbar-track {background: transparent; }
+.selectBox2 .optionList::-webkit-scrollbar-thumb {background: #303030; border-radius: 30px;}
+.selectBox2 .optionList::-webkit-scrollbar-thumb:hover {background: #303030;}
+
+.triangle {
+    display: none;
+    width: 0px;
+    height: 0px;
+    border-left: 14px solid #ffffff;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    margin-right: 10px;
+  }
+  .user-container-box{
+    position: relative;
+    top :-7px;
+  }
+  .user-container-box2{
+    height: 100%
+  }
+  .user-container {
+    top: 40px;
+    max-width: 0;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: max-width 0.3s ease-in-out;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5); /* box-shadow를 사용하여 그림자 효과 추가 */
+}
+
+
+.user-container.active {
+    max-width: 200px; /* 최대 너비로 확장 */
+}
+
+  .signin{
+    margin-left:10px;
+    width: 60px;
+    font-weight: 500;
+    font-size: 10pt;
+    font-family: 'Noto Sans KR', sans-serif;
+    white-space: nowrap;
+  }
+  .signin:hover{
+    color:rgb(82, 96, 244);
+    cursor: pointer;
+  }
+  .signup{
+    width:80px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 500;
+    font-size: 10pt;
+    font-family: 'Noto Sans KR', sans-serif;
+    white-space: nowrap;
+
+  }
+  .signup:hover{
+    color:rgb(82, 96, 244);
+    cursor: pointer;
+  }
+  .cs-center{
+    width:80px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 500;
+    font-size: 10pt;
+    font-family: 'Noto Sans KR', sans-serif;
+    white-space: nowrap;
+
+  }
+  .cs-center:hover{
+    color:rgb(82, 96, 244);
+    cursor: pointer;
+  }
+
+ 
+
+.popup-content2 {
+    position: absolute;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: none;
+
+}
+.popup-center2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.close2 {
+  position: relative;
+  color: #000000;
+    font-size: 28px;
+    font-weight: bold;
+    width: 100%;
+}
+.close-btn2{
+  display: inline-block; float: right;
+  cursor: pointer;
+}
+
+.close-btn2:hover {
+    color: #acacac;
+}
+
+.login-container2 {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.form-group-input2 {
+  width: 280px;
+  padding: 10px;
+  border:1px solid black;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  
+}
+.form-group2 {
+  margin: 30px 0;
+  text-align: left;
+}
+.form-group-input2:hover {
+  border: 1px solid #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#sign-submit2 {
+  width: 100%;
+  margin-top: 50px;
+  background-color: #313234;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#sign-submit2:hover {
+  background-color: #040303b3;
+}
+
+.popup-form2{
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 20;
+}
+.login-logo2{
+  
+  font-family: 'Caveat', cursive;
+  font-size: 60px;
+}
+.login-caption2{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:10px;
+}
+
