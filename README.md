@@ -22,9 +22,28 @@
 #### SMTP 메일서버를 이용한 사용자 등록 기능
 <br>
 
-<details><summary> 🗝️ System Architecture </summary>
+## 🗝️ System Architecture
+<details><summary>  System Architecture </summary>
 
-![image](https://github.com/MegaZizon/Hackathon20231031/assets/105596059/eb880833-5a29-4796-ba22-5ca3b9c35a7b)
+![image](https://github.com/MegaZizon/Hackathon20231031/assets/105596059/1d6ad761-831a-4fb1-ad35-3b07769fa84a)
+
+가비아 웹 호스팅 업체에서 ciasom.shop 도메인 호스팅 받아 사용하였다.
+
+호스팅된 도메인은 AWS Route 53에서 AWS EC2 인스턴스로 라우팅 하였다.
+
+ SSL/TLS 인증서를 발급받아 HTTPS를 적용하기 위해 nginx에서 certbot을 구성하여 Let’s Encrypt 서비스를 이용하여 인증서를 발급받았다.
+
+ EC2 인스턴스에서 Docker를 설치한 뒤 Docker Container에서 Nginx, Postgre, Gunicorn과 Django를 실행하여 웹 서버를 구축하였다.
+
+ nginx 에서 받은 사용자의 request를 장고 서버로 바로 보내면 배포 단계에서는 성능이나 효율상 문제가 있어 gunicorn과 같은 CGI의 일종인 WSGI(Web Server Gateway Interface)가 필요하다.
+
+ WSGI는 멀티 쓰레드(multi-thread)를 생성할 수 있어 클라이언트 요청이 많아도 효율적으로 처리할 수 있다.
+
+ WSGIApplication(Gunicorn)이 시작하면 워커(자식 프로세스)를 생성한다. 메인 쓰레드는 while문을 돌면서 워커들을 관리하며 각각 워커가 WSGIServer를 시작한다.
+
+ WSGIServer의 핸들러인 WSGIHandler가 웹서버 요청을 받아 장고에 전달 후 결과를 받아 웹 서버에 응답한다.
+
+ HTTPS로 온 사용자 요청은 Nginx에서 정적인 파일을 제공받고 gunicorn을 통해 동적인 로직을 제공받아 페이지가 표시된다.
 
 </details>
 
