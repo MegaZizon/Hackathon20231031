@@ -88,5 +88,7 @@
 
 
 
-#### 메인 기능 ( 지정된 사용자 이외 모자이크 기능 )
+#### 시연영상
+
+https://youtu.be/rCbfpVIXRxY![image](https://github.com/MegaZizon/Hackathon20231031/assets/105596059/36f36c91-43bc-4ee5-9b13-836fb6a1d4ef)
 
