@@ -16,22 +16,28 @@
 - **Environment** : Docker, Nginx, SSL, AWS EC2
 
 
-## 📌 주요 기능
+## ❗ 주요 기능
 #### 상품 인식 및 카테고리 자동 분류 기능
 #### 네이버 카페 ‘중고나라’ 상품 시세 크롤링 기능
 #### SMTP 메일서버를 이용한 사용자 등록 기능
 <br>
 
-## 🗝️ System Architecture
-<details><summary>  System Architecture </summary>
+## 🧬 System Architecture
 
 ![image](https://github.com/MegaZizon/Hackathon20231031/assets/105596059/1d6ad761-831a-4fb1-ad35-3b07769fa84a)
 
-#### 메인 로직 
+---
 
-가비아 웹 호스팅 업체에서 ciasom.shop 도메인 호스팅 받아 사용하였다.
+<details><summary> <h3>자세히</h3> </summary>
+ 
+---
+ 
+## 메인 로직 
 
-호스팅된 도메인은 AWS Route 53에서 AWS EC2 인스턴스로 라우팅 하였다.
+
+ 가비아 웹 호스팅 업체에서 ciasom.shop 도메인 호스팅 받아 사용하였다.
+
+ 호스팅된 도메인은 AWS Route 53에서 AWS EC2 인스턴스로 라우팅 하였다.
 
  SSL/TLS 인증서를 발급받아 HTTPS를 적용하기 위해 nginx에서 certbot을 구성하여 Let’s Encrypt 서비스를 이용하여 인증서를 발급받았다.
 
@@ -47,7 +53,8 @@
 
  HTTPS로 온 사용자 요청은 Nginx에서 정적인 파일을 제공받고 gunicorn을 통해 동적인 로직을 제공받아 페이지가 표시된다.
 
-#### 상세 로직 
+## 상세 로직 
+
 
  사용자에게 인증 요청이 오면 구글 SMTP 서버를 사용하여 인증을 보낸다.
 
@@ -57,5 +64,29 @@
 
  시세 데이터들 중에서 이상치를 제거하고 유효한 값들만 남긴뒤 이 정보를 사용자에게 전송한다. 
  
+ 
 </details>
+
+---
+
+## 🔗 API 기능 명세서
+  
+![image](https://github.com/MegaZizon/Hackathon20231031/assets/105596059/4a7d1517-7a9c-4854-89fa-d0e5f9bbcf0b)
+
+
+
+---
+
+## 🗂️ DB 스키마
+
+![image](https://github.com/MegaZizon/Hackathon20231031/assets/105596059/d62918be-4293-464f-a18e-f1562ff3c182)
+
+
+---
+
+## 🚩 구현 결과
+
+
+
+#### 메인 기능 ( 지정된 사용자 이외 모자이크 기능 )
 
