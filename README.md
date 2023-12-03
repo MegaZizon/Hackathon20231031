@@ -27,6 +27,8 @@
 
 ![image](https://github.com/MegaZizon/Hackathon20231031/assets/105596059/1d6ad761-831a-4fb1-ad35-3b07769fa84a)
 
+#### 메인 로직 
+
 가비아 웹 호스팅 업체에서 ciasom.shop 도메인 호스팅 받아 사용하였다.
 
 호스팅된 도메인은 AWS Route 53에서 AWS EC2 인스턴스로 라우팅 하였다.
@@ -45,5 +47,15 @@
 
  HTTPS로 온 사용자 요청은 Nginx에서 정적인 파일을 제공받고 gunicorn을 통해 동적인 로직을 제공받아 페이지가 표시된다.
 
+#### 상세 로직 
+
+ 사용자에게 인증 요청이 오면 구글 SMTP 서버를 사용하여 인증을 보낸다.
+
+ 사용자에게 카테고리 분류 요청이 오면 http://aiopen.etri.re.kr:8000/ObjectDetect에 이미지를 base64로 인코딩하여 API키와 함께 request를 보내 json으로 응답을 받은 뒤. 정확도가 0.8 이상일 경우 사용자에게 문자열을 응답한다.
+
+ 사용자에게 시세 검색 요청이 오면 https://web.joongna.com/search/{물품명}?sort=RECENT_SORT 에 request 요청을 보내 HTML을 BeautifulSoup로 파싱한 뒤 id값이 product-item-price-title-1인 요소를 선택한다.
+
+ 시세 데이터들 중에서 이상치를 제거하고 유효한 값들만 남긴뒤 이 정보를 사용자에게 전송한다. 
+ 
 </details>
 
