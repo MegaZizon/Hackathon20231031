@@ -60,7 +60,7 @@
 
  사용자에게 카테고리 분류 요청이 오면 http://aiopen.etri.re.kr:8000/ObjectDetect에 이미지를 base64로 인코딩하여 API키와 함께 request를 보내 json으로 응답을 받은 뒤. 정확도가 0.8 이상일 경우 사용자에게 문자열을 응답한다.
 
- 사용자에게 시세 검색 요청이 오면 https://web.joongna.com/search/{물품명}?sort=RECENT_SORT 에 request 요청을 보내 HTML을 BeautifulSoup로 파싱한 뒤 id값이 product-item-price-title-1인 요소를 선택한다.
+ 사용자에게 시세 검색 요청이 오면 https://web.joongna.com/search/{물품명}?sort=RECENT_SORT (물품 검색)에 request 를 보내 HTML을 BeautifulSoup로 파싱한 뒤 id값이 product-item-price-title-1인 요소(상품 가격)를 선택한다.
 
  시세 데이터들 중에서 이상치를 제거하고 유효한 값들만 남긴뒤 이 정보를 사용자에게 전송한다. 
  
